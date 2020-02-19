@@ -1,0 +1,28 @@
+@import './mixins/mixins';
+
+*, *::after, *::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html{
+    font-size: 62.5%;
+
+    @include respond(phone){
+        font-size: 50%;
+    }
+
+    @include respond(tab-port){
+        font-size: 57.5%;
+    }
+
+    @include respond(big-desk){
+        font-size: 70%;
+    }
+}
+
+body{
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    box-sizing: border-box;
+}
