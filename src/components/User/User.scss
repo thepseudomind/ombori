@@ -1,0 +1,69 @@
+@import '../../mixins/mixins';
+
+.user{
+    height: 30rem;
+    width: 25rem;
+    margin: 2rem;
+    border-radius: .3rem;
+    overflow: hidden;
+    box-shadow: 0 .1rem 5rem rgba(black, .1);
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    cursor: pointer;
+
+    @include respond(tab-land){
+        width: 28rem;
+    }
+
+    @include respond(phone){
+        width: 27.5rem;
+    }
+
+    &.active{
+        width: 27.5rem;
+    }
+
+    &__header{
+        height: 50%;
+        color: white;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--avatar{
+            height: 10rem;
+            width: 10rem;
+            border-radius: 50%;
+        }
+    }
+
+    &__content{
+        height: 50%;
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-transform: uppercase;
+
+        & > *{
+            &:not(:last-child){
+                margin-bottom: .5rem;
+            }
+        }
+    }
+
+    &__name{
+        font-family: 'Barlow Semi Condensed', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__email{
+        text-align: center;
+    }
+}
