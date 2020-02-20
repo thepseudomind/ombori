@@ -42520,7 +42520,36 @@ var Preloader = function Preloader() {
 };
 
 exports.default = Preloader;
-},{"react":"../node_modules/react/index.js","./Preloader.scss":"../src/components/Preloader/Preloader.scss"}],"../src/components/Users/Users.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Preloader.scss":"../src/components/Preloader/Preloader.scss"}],"../src/components/Loader/Loader.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/components/Loader/Loader.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var react_1 = __importDefault(require("react"));
+
+require("./Loader.scss");
+
+var Loader = function Loader() {
+  return react_1.default.createElement("div", {
+    className: "loader"
+  });
+};
+
+exports.default = Loader;
+},{"react":"../node_modules/react/index.js","./Loader.scss":"../src/components/Loader/Loader.scss"}],"../src/components/Users/Users.tsx":[function(require,module,exports) {
 "use strict";
 
 var __spreadArrays = this && this.__spreadArrays || function () {
@@ -42565,8 +42594,20 @@ var User_1 = __importDefault(require("../User/User"));
 
 var Preloader_1 = __importDefault(require("../Preloader/Preloader"));
 
+var Loader_1 = __importDefault(require("../Loader/Loader"));
+
 var Users = function Users(_a) {
   var status = _a.status;
+  var loadMoreUsers;
+
+  (function (loadMoreUsers) {
+    loadMoreUsers[loadMoreUsers["inactive"] = 0] = "inactive";
+    loadMoreUsers[loadMoreUsers["loading"] = 1] = "loading";
+    loadMoreUsers[loadMoreUsers["foundUsers"] = 2] = "foundUsers";
+    loadMoreUsers[loadMoreUsers["noMoreUsers"] = 3] = "noMoreUsers";
+  })(loadMoreUsers || (loadMoreUsers = {}));
+
+  ;
 
   var _b = react_1.useState([]),
       fetchedUsers = _b[0],
@@ -42576,7 +42617,7 @@ var Users = function Users(_a) {
       usersToRender = _c[0],
       addToRender = _c[1];
 
-  var _d = react_1.useState(false),
+  var _d = react_1.useState(loadMoreUsers[0]),
       loadingMoreUsers = _d[0],
       loadingStatus = _d[1];
 
@@ -42605,19 +42646,22 @@ var Users = function Users(_a) {
 
   var addToProducts = function addToProducts(start) {
     try {
-      fetch("https://reqres.in/api/users?page=" + (start + 1)).then(function (res) {
-        return res.json();
-      }).then(function (results) {
-        if (results.data.length > 0) {
-          var productsCollected_1 = [];
-          results.data.forEach(function (v, i) {
-            productsCollected_1.push(v);
-          });
-          addToRender(__spreadArrays(usersToRender, productsCollected_1));
-          changePage(start + 1);
-          loadingStatus(false);
-        }
-      });
+      loadingStatus(loadMoreUsers[1]);
+      setTimeout(function () {
+        fetch("https://reqres.in/api/users?page=" + (start + 1)).then(function (res) {
+          return res.json();
+        }).then(function (results) {
+          if (results.data.length > 0) {
+            var productsCollected_1 = [];
+            results.data.forEach(function (v, i) {
+              productsCollected_1.push(v);
+            });
+            addToRender(__spreadArrays(usersToRender, productsCollected_1));
+            changePage(start + 1);
+            loadingStatus(loadMoreUsers[0]);
+          }
+        });
+      }, 2000);
     } catch (e) {
       throw e;
     }
@@ -42629,7 +42673,7 @@ var Users = function Users(_a) {
       fetchedUsers.length !== usersToRender.length ? console.log('É don complete') : addToProducts(pageToFetch);
     }
   }; // Render preloader upon page load (no products) or fetched Product list when available
-  //{loadingMoreUsers ? <div className="users__spinner"></div> : <span></span>}
+  //{loadingMoreUsers === 'loading' ? <Loader/> : <span></span>}
 
 
   return react_1.default.createElement("div", {
@@ -42646,11 +42690,11 @@ var Users = function Users(_a) {
       last_name: v.last_name,
       avatar: v.avatar
     });
-  })));
+  })), react_1.default.createElement(Loader_1.default, null));
 };
 
 exports.default = Users;
-},{"react":"../node_modules/react/index.js","./Users.scss":"../src/components/Users/Users.scss","../User/User":"../src/components/User/User.tsx","../Preloader/Preloader":"../src/components/Preloader/Preloader.tsx"}],"../src/components/Main/Main.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Users.scss":"../src/components/Users/Users.scss","../User/User":"../src/components/User/User.tsx","../Preloader/Preloader":"../src/components/Preloader/Preloader.tsx","../Loader/Loader":"../src/components/Loader/Loader.tsx"}],"../src/components/Main/Main.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
