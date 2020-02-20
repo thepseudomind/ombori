@@ -1,0 +1,43 @@
+.notification{
+    position: fixed;
+    bottom: 1rem;
+    left: 2rem;
+    height: 4rem;
+    width: 15rem;
+    border-radius: .5rem;
+    background-color: white;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeInOut 2.5s none ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    &__message{
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+}
+
+@keyframes fadeInOut{
+    0%{
+        transform: translateY(-2rem);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    50%{
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: .5;
+        visibility: hidden;
+    }
+}

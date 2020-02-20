@@ -47,6 +47,7 @@ body {
   height: 100vh;
   width: 0%;
   box-shadow: 0 0.1rem 3rem rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
   transition: all .5s ease;
   display: flex;
   flex-direction: column;
@@ -223,29 +224,6 @@ body {
   .row.active {
     justify-content: space-around; }
 
-.ad {
-  width: 25rem;
-  margin: 2rem; }
-
-.notification {
-  position: fixed;
-  bottom: 1rem;
-  left: 2rem;
-  height: 4rem;
-  width: 15rem;
-  border-radius: .5rem;
-  background-color: white;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  visibility: hidden;
-  animation: fadeInOut 2s none ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2; }
-  .notification__message {
-    font-size: 1.5rem; }
-
 /*
     phones = 0 - 600px
     tab-port = 600px - 900px;
@@ -302,51 +280,21 @@ body {
   .user__email {
     text-align: center; }
 
-/*
-    phones = 0 - 600px
-    tab-port = 600px - 900px;
-    tab-land = 900px -1200px;
-    1200px - 1800px = Normal styling applies
-    big-desk = 1800px
-*/
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg); }
-  100% {
-    transform: rotate(360deg); } }
-
-.preloader {
-  height: 5rem;
-  width: 5rem;
-  border: 0.3rem solid rgba(0, 0, 0, 0.2);
-  border-left: .3rem solid black;
+.loader {
+  height: 7rem;
+  width: 7rem;
   border-radius: 50%;
-  animation: rotate 1s linear infinite;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: pulsing 1.5s infinite cubic-bezier(0.25, 0.25, 0.75, 0.75);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); }
-  @media (max-width: 56.25em) {
-    .preloader {
-      top: 35%;
-      left: 45%;
-      transform: translate(-50%, -50%); } }
-
-.loader {
-  height: 6rem;
-  width: 6rem;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.6);
-  animation: pulsing 1.5s infinite cubic-bezier(0.25, 0.25, 0.75, 0.75);
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  border: pink .5rem solid; }
   .loader::before {
     content: "";
     display: inline-block;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
     background-color: black;
     z-index: -1;
@@ -354,14 +302,70 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
+  .loader__mini {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    animation: pulsing 2s infinite cubic-bezier(0.25, 0.25, 0.75, 0.75);
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem; }
+    .loader__mini::before {
+      content: "";
+      display: inline-block;
+      height: 1rem;
+      width: 1rem;
+      border-radius: 50%;
+      background-color: black;
+      z-index: -1;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
 
 @keyframes pulsing {
   0% {
-    border: pink 2rem solid;
+    border: black 2rem solid;
     opacity: 1; }
   100% {
-    border: pink .5rem solid;
+    border: black .5rem solid;
     opacity: .25; } }
+
+.notification {
+  position: fixed;
+  bottom: 1rem;
+  left: 2rem;
+  height: 4rem;
+  width: 15rem;
+  border-radius: .5rem;
+  background-color: white;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  animation: fadeInOut 2.5s none ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; }
+  .notification__message {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase; }
+
+@keyframes fadeInOut {
+  0% {
+    transform: translateY(-2rem);
+    opacity: 0;
+    visibility: hidden; }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible; }
+  100% {
+    transform: translateY(0);
+    opacity: .5;
+    visibility: hidden; } }
 
 
 /*# sourceMappingURL=/app.02569591.css.map */

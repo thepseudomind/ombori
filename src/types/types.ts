@@ -10,3 +10,11 @@ export interface IProduct{
     last_name: string,
     avatar: string
 }
+
+export type TLoader = {
+    mini: boolean
+}
+
+export type TMessage = {
+    message: string
+}

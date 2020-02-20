@@ -6,7 +6,7 @@ const Sidebar = ({status, toggleSidebar} : IMain)=>{
     return (
         <div className={`sidebar${(status) ? ' active' : ''}`}>
             <div className="sidebar__heading">
-                <h2 className="sidebar__title">filter</h2>
+                <h2 className="sidebar__title">welcome, marija</h2>
                 <a className="sidebar__close" onClick={()=> toggleSidebar(false)}>&times;</a>
             </div>
             <div className="sidebar__content">

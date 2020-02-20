@@ -31838,7 +31838,7 @@ var Sidebar = function Sidebar(_a) {
     className: "sidebar__heading"
   }, react_1.default.createElement("h2", {
     className: "sidebar__title"
-  }, "filter"), react_1.default.createElement("a", {
+  }, "welcome, marija"), react_1.default.createElement("a", {
     className: "sidebar__close",
     onClick: function onClick() {
       return toggleSidebar(false);
@@ -42491,36 +42491,7 @@ var User = function User(_a) {
 };
 
 exports.default = User;
-},{"react":"../node_modules/react/index.js","./User.scss":"../src/components/User/User.scss"}],"../src/components/Preloader/Preloader.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/components/Preloader/Preloader.tsx":[function(require,module,exports) {
-"use strict";
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var react_1 = __importDefault(require("react"));
-
-require("./Preloader.scss");
-
-var Preloader = function Preloader() {
-  return react_1.default.createElement("div", {
-    className: "preloader"
-  });
-};
-
-exports.default = Preloader;
-},{"react":"../node_modules/react/index.js","./Preloader.scss":"../src/components/Preloader/Preloader.scss"}],"../src/components/Loader/Loader.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./User.scss":"../src/components/User/User.scss"}],"../src/components/Loader/Loader.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -42542,14 +42513,47 @@ var react_1 = __importDefault(require("react"));
 
 require("./Loader.scss");
 
-var Loader = function Loader() {
+var Loader = function Loader(_a) {
+  var mini = _a.mini;
   return react_1.default.createElement("div", {
-    className: "loader"
+    className: "loader" + (mini ? '__mini' : '')
   });
 };
 
 exports.default = Loader;
-},{"react":"../node_modules/react/index.js","./Loader.scss":"../src/components/Loader/Loader.scss"}],"../src/components/Users/Users.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Loader.scss":"../src/components/Loader/Loader.scss"}],"../src/components/NotificationBox/NotificationBox.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../src/components/NotificationBox/NotificationBox.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var react_1 = __importDefault(require("react"));
+
+require("./NotificationBox.scss");
+
+var NotificationBox = function NotificationBox(_a) {
+  var message = _a.message;
+  return react_1.default.createElement("div", {
+    className: "notification"
+  }, react_1.default.createElement("p", {
+    className: "notification__message"
+  }, "No more users"));
+};
+
+exports.default = NotificationBox;
+},{"react":"../node_modules/react/index.js","./NotificationBox.scss":"../src/components/NotificationBox/NotificationBox.scss"}],"../src/components/Users/Users.tsx":[function(require,module,exports) {
 "use strict";
 
 var __spreadArrays = this && this.__spreadArrays || function () {
@@ -42592,9 +42596,9 @@ require("./Users.scss");
 
 var User_1 = __importDefault(require("../User/User"));
 
-var Preloader_1 = __importDefault(require("../Preloader/Preloader"));
-
 var Loader_1 = __importDefault(require("../Loader/Loader"));
+
+var NotificationBox_1 = __importDefault(require("../NotificationBox/NotificationBox"));
 
 var Users = function Users(_a) {
   var status = _a.status;
@@ -42609,31 +42613,38 @@ var Users = function Users(_a) {
 
   ;
 
-  var _b = react_1.useState([]),
-      fetchedUsers = _b[0],
-      setUsers = _b[1];
+  var _b = react_1.useState(0),
+      totalUsers = _b[0],
+      setTotal = _b[1];
 
   var _c = react_1.useState([]),
-      usersToRender = _c[0],
-      addToRender = _c[1];
+      fetchedUsers = _c[0],
+      setUsers = _c[1];
 
-  var _d = react_1.useState(loadMoreUsers[0]),
-      loadingMoreUsers = _d[0],
-      loadingStatus = _d[1];
+  var _d = react_1.useState([]),
+      usersToRender = _d[0],
+      addToRender = _d[1];
 
-  var _e = react_1.useState(1),
-      pageToFetch = _e[0],
-      changePage = _e[1]; // Fetch first batch of users
+  var _e = react_1.useState(loadMoreUsers[0]),
+      loadingMoreUsers = _e[0],
+      loadingStatus = _e[1];
+
+  var _f = react_1.useState(1),
+      pageToFetch = _f[0],
+      changePage = _f[1]; // Fetch first batch of users
 
 
   react_1.useEffect(function () {
     setUsers([]);
-    fetch("https://reqres.in/api/users?page=" + pageToFetch).then(function (res) {
-      return res.json();
-    }).then(function (results) {
-      setUsers(results.data);
-      console.log(results.data);
-    });
+    setTimeout(function () {
+      fetch("https://reqres.in/api/users?page=" + pageToFetch).then(function (res) {
+        return res.json();
+      }).then(function (results) {
+        setUsers(results.data);
+        setTotal(results.total);
+        console.log(results.data);
+      });
+    }, 3000);
   }, []); // Products to render
 
   react_1.useEffect(function () {
@@ -42651,7 +42662,7 @@ var Users = function Users(_a) {
         fetch("https://reqres.in/api/users?page=" + (start + 1)).then(function (res) {
           return res.json();
         }).then(function (results) {
-          if (results.data.length > 0) {
+          if (results.data.length + start < totalUsers) {
             var productsCollected_1 = [];
             results.data.forEach(function (v, i) {
               productsCollected_1.push(v);
@@ -42670,10 +42681,14 @@ var Users = function Users(_a) {
 
   var handleScroll = function handleScroll(e) {
     if (e.target.offsetHeight + e.target.scrollTop === e.target.scrollHeight) {
-      fetchedUsers.length !== usersToRender.length ? console.log('É don complete') : addToProducts(pageToFetch);
-    }
+      totalUsers === usersToRender.length ? loadingStatus(loadMoreUsers[3]) : addToProducts(pageToFetch);
+    } // Reseting loading status
+
+
+    setTimeout(function () {
+      loadingStatus(loadMoreUsers[0]);
+    }, 2000);
   }; // Render preloader upon page load (no products) or fetched Product list when available
-  //{loadingMoreUsers === 'loading' ? <Loader/> : <span></span>}
 
 
   return react_1.default.createElement("div", {
@@ -42681,7 +42696,9 @@ var Users = function Users(_a) {
     onScroll: handleScroll
   }, react_1.default.createElement("div", {
     className: "row" + (status ? ' active' : '')
-  }, fetchedUsers.length === 0 ? react_1.default.createElement(Preloader_1.default, null) : usersToRender.map(function (v, i) {
+  }, fetchedUsers.length === 0 ? react_1.default.createElement(Loader_1.default, {
+    mini: false
+  }) : usersToRender.map(function (v, i) {
     return react_1.default.createElement(User_1.default, {
       key: v.id,
       id: v.id,
@@ -42690,11 +42707,19 @@ var Users = function Users(_a) {
       last_name: v.last_name,
       avatar: v.avatar
     });
-  })), react_1.default.createElement(Loader_1.default, null));
+  })), loadingMoreUsers === loadMoreUsers[1] ? react_1.default.createElement(Loader_1.default, {
+    mini: true
+  }) : react_1.default.createElement("span", null)
+  /* Show mini preloader when fetching more users */
+  , loadingMoreUsers === loadMoreUsers[3] ? react_1.default.createElement(NotificationBox_1.default, {
+    message: loadMoreUsers[3]
+  }) : react_1.default.createElement("span", null)
+  /* Show notification when there's no more users */
+  );
 };
 
 exports.default = Users;
-},{"react":"../node_modules/react/index.js","./Users.scss":"../src/components/Users/Users.scss","../User/User":"../src/components/User/User.tsx","../Preloader/Preloader":"../src/components/Preloader/Preloader.tsx","../Loader/Loader":"../src/components/Loader/Loader.tsx"}],"../src/components/Main/Main.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Users.scss":"../src/components/Users/Users.scss","../User/User":"../src/components/User/User.tsx","../Loader/Loader":"../src/components/Loader/Loader.tsx","../NotificationBox/NotificationBox":"../src/components/NotificationBox/NotificationBox.tsx"}],"../src/components/Main/Main.tsx":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -42831,7 +42856,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62986" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54399" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
