@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`userlist tests rendering users 1`] = `
+<div
+  className="users"
+  onScroll={[Function]}
+>
+  <div
+    className="row active"
+  >
+    <Loader
+      mini={false}
+    />
+  </div>
+  <span />
+  <span />
+</div>
+`;

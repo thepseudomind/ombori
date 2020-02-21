@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user test shallow render 1`] = `
+<div
+  className="user"
+>
+  <div
+    className="user__header"
+  >
+    <img
+      alt="Name-1"
+      className="user__header--avatar"
+      src="link"
+    />
+  </div>
+  <div
+    className="user__content"
+  >
+    <p
+      className="user__name"
+    >
+      Name Other name
+    </p>
+    <p
+      className="user__email"
+    >
+      email@email.com
+    </p>
+  </div>
+</div>
+`;

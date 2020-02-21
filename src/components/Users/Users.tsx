@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Users.scss';
 import User from '../User/User';
-import Preloader from '../Preloader/Preloader';
 import Loader from '../Loader/Loader';
 import { IMain, IProduct } from '../../types/types';
 import NotificationBox from '../NotificationBox/NotificationBox';
@@ -31,7 +30,7 @@ const Users = ({status} : IMain)=>{
         },3000);
     }, []);
 
-   // Products to render
+   // Users to render
    useEffect(()=>{
         let productsCollected : [] = [];
         fetchedUsers.forEach((v, i)=>{
@@ -40,7 +39,7 @@ const Users = ({status} : IMain)=>{
         addToRender(productsCollected);
    }, [fetchedUsers]);
    
-   // Add to the products to be rendered
+   // Add to the users to be rendered
     const addToProducts = (start : number)=>{
         try {
             loadingStatus(loadMoreUsers[1]);

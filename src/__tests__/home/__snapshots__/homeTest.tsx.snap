@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`homepage test shallow render 1`] = `
+<main
+  className="home"
+>
+  <Main
+    status={false}
+    toggleSidebar={[Function]}
+  />
+  <Sidebar
+    status={false}
+    toggleSidebar={[Function]}
+  />
+</main>
+`;

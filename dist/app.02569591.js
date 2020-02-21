@@ -42425,17 +42425,18 @@ var Navbar = function Navbar(_a) {
   return react_1.default.createElement("nav", {
     className: "navbar"
   }, react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, {
-    icon: free_solid_svg_icons_1.faUser,
-    size: "2x"
+    icon: free_solid_svg_icons_1.faUserCircle,
+    size: "3x",
+    onClick: function onClick() {}
   }), react_1.default.createElement("div", {
     className: "navbar__logo"
-  }, "ombori"), status ? react_1.default.createElement("span", null) : react_1.default.createElement("span", {
+  }, "ombori"), react_1.default.createElement("span", {
     className: "navbar__menu",
     onClick: function onClick() {
       return toggleSidebar(true);
     }
   }, react_1.default.createElement("span", {
-    className: "navbar__menu--icons"
+    className: "navbar__menu--icons" + (status ? ' inactive' : '')
   })));
 };
 
@@ -42645,7 +42646,7 @@ var Users = function Users(_a) {
         console.log(results.data);
       });
     }, 3000);
-  }, []); // Products to render
+  }, []); // Users to render
 
   react_1.useEffect(function () {
     var productsCollected = [];
@@ -42653,7 +42654,7 @@ var Users = function Users(_a) {
       productsCollected.push(v);
     });
     addToRender(productsCollected);
-  }, [fetchedUsers]); // Add to the products to be rendered
+  }, [fetchedUsers]); // Add to the users to be rendered
 
   var addToProducts = function addToProducts(start) {
     try {

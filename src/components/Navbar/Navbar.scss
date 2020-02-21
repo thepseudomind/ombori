@@ -37,6 +37,7 @@
             width: 2.5rem;
             background-color: transparent;
             position: relative;
+            transition: all .2s ease;
 
             &::after, &::before{
                 content: "";
@@ -53,6 +54,10 @@
 
             &::before{
                 top: .25rem;
+            }
+
+            &.inactive{
+                display: none;
             }
         }
 
