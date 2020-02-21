@@ -32,14 +32,23 @@ describe('navbar test', ()=>{
         expect(wrapper.find('span.navbar__menu').html()).toEqual('<span class="navbar__menu"><span class="navbar__menu--icons"></span></span>')
     });
 
-    it('check if nav state changes on click', ()=>{
+    it('check if navbar is active', ()=>{
         const mockProps : IMain = {
             status: false,
             toggleSidebar: ()=>{}
         }
-        const wrapper = mount(<Navbar {...mockProps}/>);
-        const value: boolean = wrapper.prop('status');
+        const wrapper = shallow(<Navbar {...mockProps}/>);
         wrapper.find('span.navbar__menu').simulate('click');
-        //expect(wrapper.prop('status')).toEqual(!value); 
+        expect(wrapper.find('span.navbar__menu--icons').html()).toEqual('<span class="navbar__menu--icons"></span>')
+    })
+
+    it('check if navbar is inactive', ()=>{
+        const mockProps : IMain = {
+            status: true,
+            toggleSidebar: ()=>{}
+        }
+        const wrapper = shallow(<Navbar {...mockProps}/>);
+        wrapper.find('span.navbar__menu').simulate('click');
+        expect(wrapper.find('span.navbar__menu--icons').html()).toEqual('<span class="navbar__menu--icons inactive"></span>')
     })
 });

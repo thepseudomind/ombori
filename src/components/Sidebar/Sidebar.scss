@@ -41,7 +41,7 @@
     &__close{
         font-size: 6rem;
         font-weight: 100;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Barlow Semi Condensed', sans-serif;
         cursor: pointer;
         opacity: 0;
         visibility: hidden;
@@ -64,13 +64,13 @@
     &__list{
         &--item{
             list-style: none;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Barlow Semi Condensed', sans-serif;
             font-size: 1.5rem;
             text-transform: uppercase;
             cursor: pointer;
 
             &:not(:last-child){
-                margin: 1rem 0;
+                margin: 1.5rem 0;
             }
         }
     }

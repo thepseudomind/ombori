@@ -10,13 +10,13 @@ const Sidebar = ({status, toggleSidebar} : IMain)=>{
                 <a className="sidebar__close" onClick={()=> toggleSidebar(false)}>&times;</a>
             </div>
             <div className="sidebar__content">
-                <h2 className="sidebar__title">sort by</h2>
+                <h2 className="sidebar__title">menu</h2>
                 <ul className="sidebar__list">
-                    <li className="sidebar__list--item">none</li>
-                    <li className="sidebar__list--item">by asc</li>
-                    <li className="sidebar__list--item">by id</li>
-                    <li className="sidebar__list--item">by size</li>
-                    <li className="sidebar__list--item">by price</li>
+                    <li className="sidebar__list--item">home</li>
+                    <li className="sidebar__list--item">friends</li>
+                    <li className="sidebar__list--item">profile</li>
+                    <li className="sidebar__list--item">settings</li>
+                    <li className="sidebar__list--item">logout</li>
                 </ul>
             </div>
             <div className="sidebar__heading">

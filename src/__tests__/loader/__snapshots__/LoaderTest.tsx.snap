@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loader test and check if loader 1`] = `
+<div
+  className="loader"
+/>
+`;

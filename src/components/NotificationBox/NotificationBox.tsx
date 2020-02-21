@@ -5,7 +5,7 @@ import { TMessage } from '../../types/types';
 const NotificationBox = ({message} : TMessage)=>{
     return (
         <div className="notification">
-            <p className="notification__message">No more users</p>
+            <p className="notification__message">{message}</p>
         </div>
     );
 }

@@ -15,11 +15,7 @@ describe('user test', ()=>{
     const wrapper = shallow(<User {...mockProps}/>)
 
     it('render user', ()=>{
-        expect(wrapper.length).toEqual(1)
-    })
-
-    it('shallow render', ()=>{
-        expect(wrapper).toMatchSnapshot()
-    })
-
+        expect(wrapper.length).toEqual(1);
+        expect(wrapper).toMatchSnapshot();
+    });
 })

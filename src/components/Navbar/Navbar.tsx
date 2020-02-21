@@ -7,7 +7,7 @@ import { IMain } from '../../types/types';
 const Navbar = ({status, toggleSidebar} : IMain)=>{
     return (
         <nav className="navbar">
-            <FontAwesomeIcon icon={faUserCircle} size="3x" onClick={()=>{}}/>
+            <FontAwesomeIcon icon={faUserCircle} size="3x"/>
             <div className="navbar__logo">
                 ombori
             </div>

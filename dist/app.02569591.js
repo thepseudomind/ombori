@@ -31847,19 +31847,19 @@ var Sidebar = function Sidebar(_a) {
     className: "sidebar__content"
   }, react_1.default.createElement("h2", {
     className: "sidebar__title"
-  }, "sort by"), react_1.default.createElement("ul", {
+  }, "menu"), react_1.default.createElement("ul", {
     className: "sidebar__list"
   }, react_1.default.createElement("li", {
     className: "sidebar__list--item"
-  }, "none"), react_1.default.createElement("li", {
+  }, "home"), react_1.default.createElement("li", {
     className: "sidebar__list--item"
-  }, "by asc"), react_1.default.createElement("li", {
+  }, "friends"), react_1.default.createElement("li", {
     className: "sidebar__list--item"
-  }, "by id"), react_1.default.createElement("li", {
+  }, "profile"), react_1.default.createElement("li", {
     className: "sidebar__list--item"
-  }, "by size"), react_1.default.createElement("li", {
+  }, "settings"), react_1.default.createElement("li", {
     className: "sidebar__list--item"
-  }, "by price"))), react_1.default.createElement("div", {
+  }, "logout"))), react_1.default.createElement("div", {
     className: "sidebar__heading"
   }, react_1.default.createElement("h2", {
     className: "sidebar__title"
@@ -42426,8 +42426,7 @@ var Navbar = function Navbar(_a) {
     className: "navbar"
   }, react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, {
     icon: free_solid_svg_icons_1.faUserCircle,
-    size: "3x",
-    onClick: function onClick() {}
+    size: "3x"
   }), react_1.default.createElement("div", {
     className: "navbar__logo"
   }, "ombori"), react_1.default.createElement("span", {
@@ -42475,7 +42474,7 @@ var User = function User(_a) {
       last_name = _a.last_name,
       avatar = _a.avatar;
   return react_1.default.createElement("div", {
-    className: "user" + (status ? ' active' : '')
+    className: "user"
   }, react_1.default.createElement("div", {
     className: "user__header"
   }, react_1.default.createElement("img", {
@@ -42550,7 +42549,7 @@ var NotificationBox = function NotificationBox(_a) {
     className: "notification"
   }, react_1.default.createElement("p", {
     className: "notification__message"
-  }, "No more users"));
+  }, message));
 };
 
 exports.default = NotificationBox;
@@ -42608,8 +42607,7 @@ var Users = function Users(_a) {
   (function (loadMoreUsers) {
     loadMoreUsers[loadMoreUsers["inactive"] = 0] = "inactive";
     loadMoreUsers[loadMoreUsers["loading"] = 1] = "loading";
-    loadMoreUsers[loadMoreUsers["foundUsers"] = 2] = "foundUsers";
-    loadMoreUsers[loadMoreUsers["noMoreUsers"] = 3] = "noMoreUsers";
+    loadMoreUsers[loadMoreUsers["noMoreUsers"] = 2] = "noMoreUsers";
   })(loadMoreUsers || (loadMoreUsers = {}));
 
   ;
@@ -42643,7 +42641,6 @@ var Users = function Users(_a) {
       }).then(function (results) {
         setUsers(results.data);
         setTotal(results.total);
-        console.log(results.data);
       });
     }, 3000);
   }, []); // Users to render
@@ -42682,7 +42679,7 @@ var Users = function Users(_a) {
 
   var handleScroll = function handleScroll(e) {
     if (e.target.offsetHeight + e.target.scrollTop === e.target.scrollHeight) {
-      totalUsers === usersToRender.length ? loadingStatus(loadMoreUsers[3]) : addToProducts(pageToFetch);
+      totalUsers === usersToRender.length ? loadingStatus(loadMoreUsers[2]) : addToProducts(pageToFetch);
     } // Reseting loading status
 
 
@@ -42712,8 +42709,8 @@ var Users = function Users(_a) {
     mini: true
   }) : react_1.default.createElement("span", null)
   /* Show mini preloader when fetching more users */
-  , loadingMoreUsers === loadMoreUsers[3] ? react_1.default.createElement(NotificationBox_1.default, {
-    message: loadMoreUsers[3]
+  , loadingMoreUsers === loadMoreUsers[2] ? react_1.default.createElement(NotificationBox_1.default, {
+    message: "No more users"
   }) : react_1.default.createElement("span", null)
   /* Show notification when there's no more users */
   );
@@ -42789,11 +42786,7 @@ var Main_1 = __importDefault(require("../../components/Main/Main"));
 var Home = function Home() {
   var _a = react_1.useState(false),
       status = _a[0],
-      sidebarStatus = _a[1];
-
-  var toggleSidebar = function toggleSidebar(status) {
-    sidebarStatus(status);
-  };
+      toggleSidebar = _a[1];
 
   return react_1.default.createElement("main", {
     className: "home"
@@ -42857,7 +42850,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54399" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58243" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

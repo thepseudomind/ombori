@@ -4,11 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Main from '../../components/Main/Main';
 
 const Home = () =>{
-    const [status, sidebarStatus] = useState(false);
-
-    const toggleSidebar = (status: boolean)=>{
-        sidebarStatus(status);
-    }
+    const [status, toggleSidebar] = useState(false);
 
     return (
         <main className="home">

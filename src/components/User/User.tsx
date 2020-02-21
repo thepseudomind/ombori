@@ -4,7 +4,7 @@ import { IProduct } from '../../types/types';
 
 const User =({id, email, first_name, last_name, avatar} : IProduct)=>{
     return (
-        <div className={`user${(status) ? ' active' : ''}`}>
+        <div className="user">
             <div className="user__header">
                 <img src={avatar} alt={`${first_name}-${id}`} className="user__header--avatar"/>
             </div>

@@ -1,15 +1,5 @@
 @import '../../mixins/mixins';
 
-@keyframes rotate{
-    0%{
-        transform: rotate(0deg);
-    }
-
-    100%{
-        transform: rotate(360deg);
-    }
-}
-
 .preloader{
     height: 5rem;
     width: 5rem;
@@ -26,5 +16,15 @@
         top: 35%;
         left: 45%;
         transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
     }
 }
